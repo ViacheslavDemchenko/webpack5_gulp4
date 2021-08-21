@@ -34,9 +34,9 @@ const buildFolder = './build';
 * Название текущего проекта 
 * (необходимо прописать его также в ссылках на js, css и fonts файлы в файлах footer и head в папке layouts)
 */
-const projectName = 'twentytwenty-child';
+const projectName = 'theme';
 
-const themePath = `${buildFolder}/wp-content/themes/${projectName}`; // For wordpress
+const themePath = `${buildFolder}/wp-content/themes/${projectName}/assets/`; // For wordpress
 // const themePath = `${buildFolder}`; // For other cases
 const htmlMin = false; // HTML minification (false by default)
 
