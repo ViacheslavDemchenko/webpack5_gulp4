@@ -7,7 +7,7 @@
     "dev": "webpack serve --mode development --open",
     "build": "webpack --mode production"
   },
-  "browserslist": "> 0,5%, not dead, ie11",
+  "browserslist": "> 0.5%, not dead, ie11",
   "author": "Demchenko Vyacheslav <frontend-ninja@yandex.ru>",
   "keywords": [
     "js",
