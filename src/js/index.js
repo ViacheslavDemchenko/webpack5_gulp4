@@ -1,4 +1,4 @@
-import './libs/swiper-bundle.min.js'; // Swiper-slider
-import accordion from './modules/accordion.js'; // Аккордион
+// import './libs/swiper-bundle.min.js'; // Swiper-slider
+// import accordion from './modules/accordion.js'; // Аккордион
 
-accordion();
+// accordion();
