@@ -174,7 +174,7 @@ gulp.task('styles', () => {
             includePaths: ['node_modules']
         }))
         .pipe(autoprefixer({
-            // Browserslist: ['> 1%, not dead'],
+            Browserslist: ['> 1%, not dead'],
             cascade: false
         }))
         .pipe(gcmq())
@@ -242,14 +242,6 @@ gulp.task('sprites', () => {
                 ]
             })
         ]))
-        // .pipe(svgmin({
-        //     plugins: [{
-        //         cleanupIDs: false,
-        //         js2svg: {
-        //             pretty: true
-        //         }
-        //     }]
-        // }))
         .pipe(cheerio({
             run: ($) => {
                 $('[fill]').removeAttr('fill');
@@ -278,11 +270,18 @@ gulp.task('svg', () => {
     return gulp.src(paths.svg.src)
         .pipe(plumber())
         .pipe(newer(paths.svg.dest))
-        .pipe(svgmin({
-            js2svg: {
-                pretty: true
-            }
-        }))
+        .pipe(imagemin([
+            imagemin.svgo({
+                plugins: [
+                    {
+                        removeViewBox: true
+                    },
+                    {
+                        cleanupIDs: false
+                    }
+                ]
+            })
+        ]))
         .pipe(gulp.dest(paths.svg.dest))
         .pipe(browserSync.stream())
 });
@@ -304,16 +303,6 @@ gulp.task('php', () => {
         .pipe(plumber())
         // .pipe(newer(paths.php.dest))
         .pipe(gulp.dest(paths.php.dest))
-        .pipe(browserSync.stream())
-});
-
-/* VIDEO MOVING TO BUILD */
-
-gulp.task('video', () => {
-    return gulp.src(paths.video.src)
-        .pipe(plumber())
-        .pipe(newer(paths.video.dest))
-        .pipe(gulp.dest(paths.video.dest))
         .pipe(browserSync.stream())
 });
 
@@ -347,7 +336,6 @@ gulp.task('server', () => {
     gulp.watch(paths.svg.watch, gulp.series('svg', reload));
     gulp.watch(paths.fonts.watch, gulp.series('fonts', reload));
     gulp.watch(paths.php.watch, gulp.series('php', reload));
-    gulp.watch(paths.video.watch, gulp.series('video', reload));
 });
 
 /* PROJECT TASK DEVELOPMENT QUEUE */
@@ -361,8 +349,7 @@ gulp.task('dev', gulp.series(
     'sprites',
     'svg',
     'fonts',
-    'php',
-    'video'
+    'php'
 ));
 
 gulp.task('prod', gulp.series(
@@ -375,8 +362,7 @@ gulp.task('prod', gulp.series(
     'sprites',
     'svg',
     'fonts',
-    'php',
-    'video'
+    'php'
 ));
 
 /* START DEVELOPMENT GULP */
