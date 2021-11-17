@@ -38,7 +38,7 @@ const buildFolder = './build';
 const projectName = 'theme';
 
 const themePath = `${buildFolder}/wp-content/themes/${projectName}/assets/`; // For wordpress
-// const themePath = `${buildFolder}`; // For other cases
+// const themePath = `${buildFolder}/assets/`; // For other cases
 const htmlMin = false; // HTML minification (false by default)
 
 const paths = {
