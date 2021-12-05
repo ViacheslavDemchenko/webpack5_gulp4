@@ -118,12 +118,12 @@ let webpackConfig = {
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: '/node_modules/', // Не обязательно (для вытягивания откомпелированного в babel кода из зависимостей)
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
                     }
                 }
             }
@@ -174,7 +174,7 @@ gulp.task('styles', () => {
             includePaths: ['node_modules']
         }))
         .pipe(autoprefixer({
-            Browserslist: ['> 1%, not dead'],
+            // Browserslist: ['last 2 versions, > 0.5%'],
             cascade: false
         }))
         .pipe(gcmq())
